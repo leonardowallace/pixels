@@ -1,7 +1,7 @@
 /*=============== GOOGLE FONTS ===============*/
 @import url("https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap");
 
-/*=============== Variaveis CSS ===============*/
+/*=============== Variáveis CSS ===============*/
 :root {
   --header-height: 3.5rem;
   /*========== Colors ==========*/
@@ -13,84 +13,52 @@
   --text-color: hsl(var(--hue), 20%, 80%);
   --text-color-light: hsl(var(--hue), 20%, 70%);
   --body-color: #111C26;
-  --container-color: #025951;
+  --container-color: #111C26;
 
   /*========== Fontes ==========*/
   /*.5rem = 8px | 1rem = 16px ...*/
   --body-font: "Syne", sans-serif;
   --biggest-font-size: 3rem;
   --big-font-size: 1.5rem;
-  --h1-font-size: 1.5rem;
-  --h2-font-size: 1.25rem;
-  --h3-font-size: 1rem;
+  --h1-font-size: 1.25rem;
   --normal-font-size: .938rem;
   --small-font-size: .813rem;
+  --smaller-font-size: .75rem;
 
-  /*========== Font weight ==========*/
-  --font-regular: 400;
-  --font-semi-bold: 600;
-  --font-bold: 700;
-
-  /*========== z index ==========*/
-  --z-tooltip: 10;
-  --z-fixed: 100;
-}
-
-/*========== Responsividade ==========*/
-@media screen and (min-width: 1150px) {
-  :root {
-    --biggest-font-size: 4rem;
+  @media screen and (min-width: 968px) {
+    --biggest-font-size: 4.5rem;
     --big-font-size: 2rem;
     --h1-font-size: 2.25rem;
-    --h2-font-size: 1.5rem;
-    --h3-font-size: 1.25rem;
-    --normal-font-size: 1.125rem;
+    --normal-font-size: 1rem;
     --small-font-size: .875rem;
+    --smaller-font-size: .813rem;
   }
 }
 
-/*=============== BASE ===============*/
-* {
+/*=============== Base ===============*/
+*,
+::before,
+::after {
   box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body,
-input,
-textarea,
-button {
-  font-family: var(--body-font);
-  font-size: var(--normal-font-size);
 }
 
 body {
-  background-color: var(--body-color);
+  margin: 0;
+  padding: 0;
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
   color: var(--text-color);
+  background: var(--body-color);
 }
 
-input,
-button,
-textarea {
-  border: none;
-  outline: none;
-}
-
-h1, h2, h3 {
-  color: var(--title-color);
-  font-weight: var(--font-semi-bold);
-}
-
-p {
-  line-height: 130%;
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
 }
 
 ul {
   list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 a {
@@ -98,63 +66,215 @@ a {
 }
 
 img {
-  display: block;
   max-width: 100%;
   height: auto;
 }
 
-/*===============  CSS CLASSES REUTILIZADAS ===============*/
+/*=============== Layout ===============*/
 .container {
-  max-width: 1120px;
-  margin-inline: 1.5rem;
+  max-width: 968px;
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
-.grid {
-  display: grid;
-  gap: 1.5rem;
+/*=============== Header ===============*/
+.header {
+  width: 100%;
+  height: var(--header-height);
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: var(--body-color);
+  z-index: 100;
 }
 
+.nav {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav__logo {
+  color: var(--first-color-light);
+  font-weight: 700;
+  font-size: var(--h1-font-size);
+}
+
+.nav__menu {
+  display: none;
+}
+
+.nav__list {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav__item {
+  position: relative;
+}
+
+.nav__link {
+  color: var(--text-color);
+  font-weight: 500;
+  font-size: var(--normal-font-size);
+  transition: .3s;
+}
+
+.nav__link:hover {
+  color: var(--first-color);
+}
+
+.nav__dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--container-color);
+  padding: 0.5rem 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nav__dropdown-link {
+  color: var(--text-color);
+  padding: 0.5rem 1rem;
+  white-space: nowrap;
+}
+
+.nav__dropdown-link:hover {
+  color: var(--first-color-light);
+}
+
+.nav__item:hover .nav__dropdown {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.25rem;
+}
+
+.nav__toggle {
+  font-size: 1.5rem;
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+.home__container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.home__title{
+  color: var(--first-color-light);
+}
+
+.home__content{
+  width: 25rem;
+  text-align: left;
+}
+
+/* Show menu for large screens */
+@media screen and (min-width: 768px) {
+  .nav__menu {
+    display: block;
+  }
+
+  .nav__toggle {
+    display: none;
+  }
+}
+
+/*=============== Scroll Up ===============*/
+.scrollup {
+  position: fixed;
+  right: 1rem;
+  bottom: 2rem;
+  background: var(--first-color);
+  color: var(--title-color);
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.25rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  transition: .4s;
+}
+
+.scrollup:hover {
+  background: var(--first-color-light);
+}
+
+.scrollup__icon {
+  font-size: 1.25rem;
+}
+
+.scrollup.show-scroll {
+  opacity: 1;
+  visibility: visible;
+}
+
+/*=============== Sections ===============*/
 .section {
-  padding-block: 5rem 2rem;
+  padding: 5rem 0 2rem;
 }
 
 .section__title {
   text-align: center;
   font-size: var(--h1-font-size);
-  font-weight: var(--font-bold);
   margin-bottom: 2rem;
 }
 
-.main {
-  overflow: hidden;
+/*=============== SCROLL BAR ===============*/
+::-webkit-scrollbar{
+  width: .6rem;
+  background-color: hsl(0, 0%, 15%);
 }
 
-/*============HEADER=================*/
-.header{
-  position: fixed;
+::-webkit-scrollbar-thumb{
+  width: .6rem;
+  background-color: hsl(0, 0%, 30%);
+}
+
+/* Add blur header */
+.blur-header::after{
+  content: '';
+  position: absolute;
   width: 100%;
+  height: 100%;
+  background-color: hsla(0, 0%, 0%, .2);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   top: 0;
   left: 0;
-  background-color: transparent;
-  z-index: var(--z-fixed);
+  z-index: -1;
 }
-.nav{
-  position: relative;
-  height: var(--header-height);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  }
+/*=============== Footer ===============*/
+.footer {
+  padding: 2rem 0;
+  background: var(--body-color);
+  text-align: center;
+  color: var(--text-color-light);
+}
 
+.footer__title {
+  font-size: var(--h1-font-size);
+  font-weight: var(--font-bold);
+}
 
-  .nav__logo{
-    color: var(--first-color-light);
-    font-weight: var(--font-bold);
-  }
+.footer__description {
+  margin-top: 0.5rem;
+  font-size: var(--small-font-size);
+}
 
-  .nav__toggle,
-  .nav__close{
-    font-size: 1.5rem;
-    color: var(--title-color);
-    cursor: pointer;
-  }
+.footer__social {
+  margin-top: 1.5rem;
+}
+
+.footer__social-link {
+  margin: 0 0.5rem;
+  color: var(--text-color-light);
+  transition: .3s;
+}
+
+.footer__social-link:hover {
+  color: var(--first-color-light);
+}
