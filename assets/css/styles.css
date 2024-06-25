@@ -1,6 +1,11 @@
 /*=============== GOOGLE FONTS ===============*/
 @import url("https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap");
-
+@font-face {
+  font-family: 'valorant';
+  src: url('/assets/fonts/Valorant\ Font.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 /*=============== Variáveis CSS ===============*/
 :root {
   --header-height: 3.5rem;
@@ -18,6 +23,7 @@
   /*========== Fontes ==========*/
   /*.5rem = 8px | 1rem = 16px ...*/
   --body-font: "Syne", sans-serif;
+  --valfont: 'valorant';
   --biggest-font-size: 3rem;
   --big-font-size: 1.5rem;
   --h1-font-size: 1.25rem;
@@ -88,52 +94,108 @@ img {
   z-index: 100;
 }
 
+/*============================NAV =========================*/
+/* Menu Desktop */
 .nav {
-  height: 100%;
+  position: relative;
+  height: var(--header-height);
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
 }
 
 .nav__logo {
   color: var(--first-color-light);
-  font-weight: 700;
-  font-size: var(--h1-font-size);
+  font-weight: var(--font-bold);
+  font-size: var(--h1-font-size); /* Tamanho do logo atualizado */
 }
 
-.nav__menu {
-  display: none;
+.nav__toggle,
+.nav__close {
+  font-size: 1.5rem;
+  color: var(--title-color);
+  cursor: pointer;
 }
 
-.nav__list {
-  display: flex;
-  gap: 2rem;
+/* Menu Mobile */
+@media screen and (max-width: 1150px) {
+  .nav__menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    background-color: hsla(var(--hue), 70%, 4%, .2);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    width: 80%;
+    height: 100%;
+    padding: 7rem 3rem;
+    transition: right .4s;
+  }
+
+  .nav__list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 3rem;
+  }
+
+  .nav__link {
+    position: relative;
+    color: var(--title-color);
+    font-weight: var(--font-semi-bold);
+    transition: color .4s;
+  }
+
+  .nav__link::after {
+    content: '';
+    width: 0;
+    height: 2px;
+    background-color: var(--first-color-light);
+    position: absolute;
+    left: 0;
+    bottom: -.5rem;
+    transition: width .3s;
+  }
+
+  .nav__link:hover {
+    color: var(--first-color-light);
+  }
+
+  .nav__link:hover::after {
+    width: 30%;
+  }
+
+  .nav__close {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+  }
 }
 
+/* Show menu */
+.show-menu {
+  right: 0;
+}
+
+/* Dropdown menu */
 .nav__item {
   position: relative;
 }
 
-.nav__link {
-  color: var(--text-color);
-  font-weight: 500;
-  font-size: var(--normal-font-size);
-  transition: .3s;
-}
-
-.nav__link:hover {
-  color: var(--first-color);
-}
-
 .nav__dropdown {
   display: none;
-  border-radius: 1.25rem;
+  border-radius: .25rem;
   position: absolute;
   top: 100%;
-  left: 0;
+  left: 50%;
   background: var(--container-color);
   padding: 0.5rem 0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-height: 200px; /* Altura fixa para permitir rolagem */
+  overflow-y: auto;  /* Habilita a rolagem vertical */
+}
+
+.show-dropdown {
+  display: block;
 }
 
 .nav__dropdown-link {
@@ -146,7 +208,7 @@ img {
   color: var(--first-color-light);
 }
 
-.nav__item:hover .nav__dropdown {
+.nav__item .show-dropdown {
   display: flex;
   flex-direction: column;
   row-gap: 1rem;
@@ -157,6 +219,19 @@ img {
   color: var(--text-color);
   cursor: pointer;
 }
+
+.nav__close {
+  display: none;
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+
+
+/*================HOME=================*/
 
 .home__container{
   display: flex;
@@ -193,7 +268,7 @@ img {
   background: var(--first-color);
   color: var(--title-color);
   padding: 0.5rem 0.75rem;
-  border-radius: 0.25rem;
+  border-radius: 0.1rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   opacity: 0;
   visibility: hidden;
@@ -291,6 +366,7 @@ img {
 }
 
 .card__name{
+  font-family: var(--valfont);
   font-size: var(--big-font-size);
   font-weight: bolder;
 }
