@@ -480,10 +480,6 @@ img {
     top: 18px;
   }
 
-  .nav__list p{
-    
-  }
-
   .nav__dropdown{
     background-color: var(--body-color);
     border-radius: .12rem;
@@ -494,26 +490,36 @@ img {
 
 /* Aparelhos grandes */
 @media screen and (min-width: 1150px){
-  .nav__toggle i{
-    display: none;
-  }
+.nav__list{
+  left:30%;
+}
 
-  .nav__menu{
-    display: flex;
-    right: 0;
-    backdrop-filter: none;
-    background-color: transparent;
-  }
+.nav__link{
+  font-weight: bold;
+  color: var(--text-color);
+}
 
-  .nav__list{
-    display: flex;
-    background-color: transparent;
-    flex-direction: row;
-    justify-content: space-between;
-    column-gap: 1.5rem;
-    font-size: 1.5rem;
-    position: absolute;
-    top: 15px;
-  }
+.nav__link::after {
+  content: '';
+  width: 0;
+  height: 2px;
+  background-color: var(--first-color-light);
+  position: absolute;
+  left: 0;
+  bottom: -.5rem;
+  transition: width .3s;
+}
+
+.nav__link:hover {
+  color: var(--first-color-light);
+}
+
+.nav__link:hover::after {
+  width: 30%;
+}
+
+.frame{
+  height: 70vh;
+}
 }
 
