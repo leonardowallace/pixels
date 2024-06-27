@@ -50,7 +50,7 @@
 
 body {
   margin: 0;
-  padding: 0;
+  padding: 1rem;
   font-family: var(--body-font);
   font-size: var(--normal-font-size);
   color: var(--text-color);
@@ -138,6 +138,10 @@ img {
     row-gap: 3rem;
   }
 
+  .nav__logo{
+    font-weight: var(--font-bold);
+  }
+
   .nav__link {
     position: relative;
     color: var(--title-color);
@@ -186,11 +190,11 @@ img {
   border-radius: .25rem;
   position: absolute;
   top: 100%;
-  left: 50%;
-  background: var(--container-color);
+  left: 100%;
+  border: none;
+  background: var(--body-color);
   padding: 0.5rem 0;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-height: 200px; /* Altura fixa para permitir rolagem */
+  max-height: 400px; /* Altura fixa para permitir rolagem */
   overflow-y: auto;  /* Habilita a rolagem vertical */
 }
 
@@ -390,6 +394,11 @@ img {
   margin-top: 3.5rem;
 }
 
+.frame{
+  width: 70vw;
+  height: 50vh;
+}
+
 .subtitle{
   color: var(--first-color-light);
 }
@@ -424,3 +433,87 @@ img {
 .footer__social-link:hover {
   color: var(--first-color-light);
 }
+
+/*==================MEDIAQUERIES====================*/
+/* Aparelhos pequenos */
+@media screen and (max-width: 300px){
+
+}
+
+/* Aparelhos médios */
+@media screen and (min-width: 540px){
+.nav__menu{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: var(--text-color);
+}
+
+.home{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+}
+
+@media screen and (min-width: 768px){
+  .nav__toggle i{
+    display: none;
+  }
+
+  .nav__menu{
+    display: flex;
+    right: 0;
+    backdrop-filter: none;
+    background-color: transparent;
+  }
+
+
+  .nav__list{
+    display: flex;
+    background-color: transparent;
+    flex-direction: row;
+    justify-content: space-between;
+    column-gap: 1.5rem;
+    font-size: 1rem;
+    position: absolute;
+    top: 18px;
+  }
+
+  .nav__list p{
+    
+  }
+
+  .nav__dropdown{
+    background-color: var(--body-color);
+    border-radius: .12rem;
+  }
+}
+
+
+
+/* Aparelhos grandes */
+@media screen and (min-width: 1150px){
+  .nav__toggle i{
+    display: none;
+  }
+
+  .nav__menu{
+    display: flex;
+    right: 0;
+    backdrop-filter: none;
+    background-color: transparent;
+  }
+
+  .nav__list{
+    display: flex;
+    background-color: transparent;
+    flex-direction: row;
+    justify-content: space-between;
+    column-gap: 1.5rem;
+    font-size: 1.5rem;
+    position: absolute;
+    top: 15px;
+  }
+}
+
