@@ -82,3 +82,17 @@ let swiperMaps = new Swiper('.maps__swiper', {
         }
     }
   });
+
+  /*============FRAME==============*/
+  document.addEventListener('DOMContentLoaded', function() {
+    const agentLinks = document.querySelectorAll('.agent-link');
+    const iframe = document.getElementById('agent-iframe');
+
+    agentLinks.forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+            const playlistUrl = this.getAttribute('data-playlist');
+            iframe.src = playlistUrl;
+        });
+    });
+});

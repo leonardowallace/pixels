@@ -395,6 +395,9 @@ img {
 }
 
 .frame{
+  background-image: url(../img/abyss.png);
+  background-repeat: none;
+  background-size: cover;
   width: 70vw;
   height: 50vh;
 }
